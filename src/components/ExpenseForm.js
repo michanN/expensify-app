@@ -4,7 +4,7 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css'
 
 export default class ExpenseForm extends React.Component {
-  // local state because we only want to change the store state if the user submits
+  // local state bc we only want to change the store state if the user submits
   constructor(props){
     super(props);
     this.state = {
