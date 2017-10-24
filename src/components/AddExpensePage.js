@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm'
 import { addExpense } from '../actions/expenses'
 
-class AddExpensePage extends React.Component {
+export class AddExpensePage extends React.Component {
   onSubmit = (expense) => {
-    this.props.onSubmit(expense);
+    this.props.addExpense(expense);
     this.props.history.push('/');
   };
   render() {
@@ -21,7 +21,7 @@ class AddExpensePage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit:(expense) => dispatch(addExpense(expense))
+  addExpense:(expense) => dispatch(addExpense(expense))
 });
 
 // If we only need dispatch and no state we can run connect without a function
