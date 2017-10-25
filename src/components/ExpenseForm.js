@@ -88,4 +88,4 @@ export default class ExpenseForm extends React.Component {
       </div>
     )
   }
-}
+};
