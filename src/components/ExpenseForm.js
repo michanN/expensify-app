@@ -4,7 +4,7 @@ import { SingleDatePicker } from 'react-dates';
 
 export default class ExpenseForm extends React.Component {
   // local state bc we only want to change the store state if the user submits
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       description: props.expense ? props.expense.description : '',
@@ -39,7 +39,7 @@ export default class ExpenseForm extends React.Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
-    if(!this.state.description || !this.state.amount) {
+    if (!this.state.description || !this.state.amount) {
       this.setState(() => ({ error: 'Please provide a description and an amount.' }));
     } else {
       this.setState(() => ({ error: '' }));
@@ -51,7 +51,7 @@ export default class ExpenseForm extends React.Component {
       });
     }
   };
-  render(){
+  render() {
     return (
       <div>
         {this.state.error && <p>{this.state.error}</p>}
@@ -86,6 +86,6 @@ export default class ExpenseForm extends React.Component {
           <button>Add Expense</button>
         </form>
       </div>
-    )
+    );
   }
-};
+}

@@ -17,5 +17,10 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# Bundles
+# Bundles and Misc
 public/dist/
+src/playground/
+
+# ENV variables
+.env.test
+.env.development

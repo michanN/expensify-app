@@ -14,12 +14,11 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
             ...expense,
             ...action.updates // Overrides every match
           };
-        } else {
-          return expense;
-        };
+        }
+        return expense;
       });
     case 'REMOVE_EXPENSE':
-      return state.filter(({ id }) => id != action.id);
+      return state.filter(({ id }) => id !== action.id);
     default:
       return state;
   }
