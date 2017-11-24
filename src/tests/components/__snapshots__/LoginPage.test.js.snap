@@ -13,12 +13,12 @@ exports[`should correclty render login page 1`] = `
       Expensify
     </h1>
     <p>
-      It is time to get your life under constrol.
+      It is time to get your life under control.
     </p>
     <button
       className="button"
     >
-      Login in with Google
+      Login with Google
     </button>
   </div>
 </div>

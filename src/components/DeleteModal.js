@@ -3,25 +3,27 @@ import Modal from 'react-modal';
 
 const DeleteModal = props => (
   <Modal
-    isOpen={!!props.showDeleteModal}
-    onRequestClose={props.handleCloseDeleteModal}
-    onRemove={props.onRemove}
+    isOpen={props.showDeleteModal}
+    onRequestClose={props.onRemoveCancel}
     contentLabel="Delete Expense"
     closeTimeoutMS={200}
     className="modal"
   >
     <p className="modal__body">Are you sure you want to delete this expense?</p>
-    <button
-      className="button"
-      onClick={props.onRemove}>
-      Delete
-    </button>
-    <div className="modal-divider" />
-    <button
-      className="button button--delete"
-      onClick={props.handleCloseDeleteModal}>
-      Cancel
-    </button>
+    <div>
+      <button
+        className="button"
+        onClick={props.onRemoveConfirm}>
+        Delete
+      </button>
+      <div className="modal-divider" />
+      <button
+        className="button button--delete"
+        onClick={props.onRemoveCancel}>
+        Cancel
+      </button>
+    </div>
+
   </Modal>
 );
 

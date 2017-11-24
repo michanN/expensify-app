@@ -7,7 +7,7 @@ export const LoginPage = props => (
     <div className="box-layout__box">
       <h1 className="box-layout__title">Expensify</h1>
       <p>It is time to get your life under control.</p>
-      <button className="button" onClick={props.startLogin} >Login in with Google</button>
+      <button className="button" onClick={props.startLogin} >Login with Google</button>
     </div>
   </div>
 );

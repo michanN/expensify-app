@@ -13,17 +13,24 @@ export class EditExpensePage extends React.Component {
   }
   onSubmit = (expense) => {
     this.props.startEditExpense(this.props.expense.id, expense);
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   };
-  onRemove = () => {
+  onRemoveConfirm = () => {
+    this.setState(() => ({
+      showDeleteModal: false
+    }));
     this.props.startRemoveExpense({ id: this.props.expense.id });
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   };
   onDeleteClick = () => {
-    this.setState(() => ({ showDeleteModal: true }));
+    this.setState(() => ({
+      showDeleteModal: true
+    }));
   };
-  handleCloseDeleteModal = () => {
-    this.setState(() => ({ showDeleteModal: false }));
+  onRemoveCancel = () => {
+    this.setState(() => ({
+      showDeleteModal: false
+    }));
   }
   render() {
     return (
@@ -44,15 +51,12 @@ export class EditExpensePage extends React.Component {
             >
             Remove Expense
           </button>
-          {
-            this.state.showDeleteModal &&
-            <DeleteModal
-              showDeleteModal={this.state.showDeleteModal}
-              handleCloseDeleteModal={this.handleCloseDeleteModal}
-              onRemove={this.onRemove}
-            />
-          }
         </div>
+        <DeleteModal
+          showDeleteModal={this.state.showDeleteModal}
+          onRemoveCancel={this.onRemoveCancel}
+          onRemoveConfirm={this.onRemoveConfirm}
+        />
       </div>
     );
   }
