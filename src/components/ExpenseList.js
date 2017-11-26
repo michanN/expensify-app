@@ -2,40 +2,55 @@ import { connect } from 'react-redux';
 import React from 'react';
 import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
+import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from '../actions/filters';
 
-export const ExpenseList = props => (
-  <div className="content-container">
-    <div className="list-header">
-      <div className="show-for-mobile">Expenses</div>
-      <div className="show-for-wider">Expense</div>
-      <div className="show-for-wider">Amount</div>
-    </div>
-    <div className="list-body">
-      {props.expenses.length === 0 ? (
-        <div className="list-item list-item__message">
-          <span>No expenses</span>
+export class ExpenseList extends React.Component {
+  onResetFilter = () => {
+    this.props.setTextFilter('');
+    this.props.setStartDate();
+    this.props.setEndDate();
+  };
+  render() {
+    return (
+      <div className="content-container">
+        <div className="list-header">
+          <div className="show-for-mobile">Expenses</div>
+          <div className="show-for-wider">Expense</div>
+          <div className="show-for-wider">Amount</div>
         </div>
-      ) : (
-        props.expenses.map((expense) => {
-          return (<ExpenseListItem
-            {...expense}
-            key={expense.id} />);
-        }))
-    }
-    </div>
-  </div>
-);
-
-// connect returns a function that we can use to create the HOS
-// function inside connect defines what we want our comp to access from the store
-// store state gets passed in as the first argument
-// When connecting a comp to the redux store the comp becomes reactive aka changes in the store,
-// will rerender component
+        <div className="list-body">
+          {this.props.expenses.length === 0 ? (
+            <div className="list-item list-item__message">
+              <span>{this.props.filtered ? 'All expenses filtered out' : 'No expenses'}</span>
+            </div>
+          ) : (
+            this.props.expenses.map((expense) => {
+              return (<ExpenseListItem
+                {...expense}
+                key={expense.id} />);
+            }))
+        }
+        </div>
+        {this.props.filtered && <button className="button button--delete" onClick={this.onResetFilter}>Show all</button>}
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
+  const filteredExpenses = selectExpenses(state.expenses, state.filters);
   return {
-    expenses: selectExpenses(state.expenses, state.filters)
+    expenses: filteredExpenses,
+    filtered: (filteredExpenses.length !== state.expenses.length)
   };
 };
 
-export default connect(mapStateToProps)(ExpenseList);
+const mapDispatchToProps = dispatch => ({
+  setTextFilter: text => dispatch(setTextFilter(text)),
+  sortByDate: () => dispatch(sortByDate()),
+  sortByAmount: () => dispatch(sortByAmount()),
+  setStartDate: startDate => dispatch(setStartDate(startDate)),
+  setEndDate: endDate => dispatch(setEndDate(endDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList);
