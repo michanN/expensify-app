@@ -23,7 +23,7 @@ exports[`should render Header correctly 1`] = `
       </div>
       <div>
         <span
-          className="header__welcome"
+          className="show-for-wider header__welcome"
         >
           Hello 
           !

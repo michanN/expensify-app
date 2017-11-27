@@ -13,7 +13,7 @@ export const Header = props => (
           </Link>
         </div>
         <div>
-          <span className="header__welcome">Hello {props.name}!</span>
+          <span className="show-for-wider header__welcome">Hello {props.name}!</span>
           <button className="button button--link" onClick={props.startLogout}>Logout</button>
         </div>
       </div>
