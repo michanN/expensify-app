@@ -9,8 +9,8 @@ test('should correclty render login page', () => {
 });
 
 test('should call startLogin on button click', () => {
-  const startLogin = jest.fn();
-  const wrapper = shallow(<LoginPage startLogin={startLogin} />);
-  wrapper.find('button').simulate('click');
-  expect(startLogin).toHaveBeenCalled();
+  const startLoginWithGithub = jest.fn();
+  const wrapper = shallow(<LoginPage startLoginWithGithub={startLoginWithGithub} />);
+  wrapper.find('.button--github').simulate('click');
+  expect(startLoginWithGithub).toHaveBeenCalled();
 });

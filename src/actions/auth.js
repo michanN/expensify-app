@@ -31,9 +31,10 @@ export const startLogout = () => {
   };
 };
 
-export const login = uid => ({
+export const login = (uid, displayName) => ({
   type: 'LOGIN',
-  uid
+  uid,
+  displayName: displayName.substr(0, displayName.indexOf(' '))
 });
 
 export const logout = () => ({
