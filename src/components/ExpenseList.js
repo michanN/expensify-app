@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
-import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from '../actions/filters';
+import { setTextFilter, setStartDate, setEndDate } from '../actions/filters';
 
 export class ExpenseList extends React.Component {
   onResetFilter = () => {
@@ -47,8 +47,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   setTextFilter: text => dispatch(setTextFilter(text)),
-  sortByDate: () => dispatch(sortByDate()),
-  sortByAmount: () => dispatch(sortByAmount()),
   setStartDate: startDate => dispatch(setStartDate(startDate)),
   setEndDate: endDate => dispatch(setEndDate(endDate))
 });

@@ -10,6 +10,15 @@
   text-decoration: none;
 }
 
+.button--login {
+  margin: .4rem;
+  width: 200px;
+}
+
+.button--github {
+  background: grey;
+}
+
 .button--summary {
   background: $teal;
 }
